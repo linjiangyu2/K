@@ -57,7 +57,7 @@ yum_install(){
 	yum makecache
 	yum install -y epel-release.noarch &> /dev/null
 	yum makecache
-	yum install -y 7:lvm2-2.02.187-6.el7_9.5.x86_64 vim curl rsync net-tools ntp &> /dev/null
+	yum install -y lsof 7:lvm2-2.02.187-6.el7_9.5.x86_64 vim curl rsync net-tools ntp &> /dev/null
 	systemctl disable --now firewalld &> /dev/null
 	systemctl enable --now ntpd &> /dev/null
 	echo "systemctl restart ntpd" >> /etc/rc.local
