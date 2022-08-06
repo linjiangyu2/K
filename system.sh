@@ -1,4 +1,9 @@
 #!/bin/bash
+<<END
+By K
+effect initialize mini redhat/centos system
+Uages sh ./system.sh
+END
 hostname_install(){
 	hn=`echo $IPADDR | cut -d. -f4`
 	hostnamectl set-hostname k.server${hn}.cc
