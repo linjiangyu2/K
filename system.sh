@@ -62,6 +62,12 @@ yum_install(){
 	yum makecache
 	yum install -y epel-release.noarch &> /dev/null
 	yum makecache
+	yum install -y 7:lvm2-2.02.187-6.el7_9.5.x86_64 vim curl rsync ntp &> /dev/null
+	systemctl disable --now firewalld &> /dev/null
+	systemctl enable --now ntpd &> /dev/null
+	echo "systemctl restart ntpd" >> /etc/rc.local
+	echo "* */1 * * * systemctl restart ntpd" >> /var/spool/cron/root
+	[ $redhat -eq 7 ] && systemctl disable --now NetworkManager &> /dev/null
 	}
 
 LANG() {
@@ -74,13 +80,16 @@ rb() {
 	do
 		read -p "For all configurations to take effect, check whether reboot?(yes/on)" INPUT
 	done
-	if [[ $INPUT -eq 'yes' ]];then
+	case $INPUT in
+	  'yes' )
 	reboot
-	elif [[ $INPUT -eq 'no' ]];then
+	;;
+	  'no'  )
 	exit 0
-	else
-	echo -e "\033[31myes or on?\033[0m" && rb
-	fi
+	;;
+	*)
+	echo -e "\033[31myes or no?\033[0m" && rb
+	esac
 }
 ip_install
 hostname_install
