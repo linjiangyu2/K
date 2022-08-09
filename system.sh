@@ -58,9 +58,10 @@ yum_install(){
 	[ $? -ne 0 ] && yum install -y wget &> /dev/null
 	mirror=`curl https://mirrors.tencent.com/help/centos.html | grep "wget" | grep "centos${redhat}_base.repo" | awk '{print $NF}'`
 	wget -O /etc/yum.repos.d/CentOS-Base.repo $mirror
-	jdt
+#	jdt
 	yum makecache
 	yum install -y epel-release.noarch &> /dev/null
+	[ $redhat -eq 7 ] && wget -O /etc/yum.repos.d/docker-ce.repo http://182.61.144.62:9090/docker-ce.repo
 	yum makecache
 	yum install -y 7:lvm2-2.02.187-6.el7_9.5.x86_64 vim curl rsync ntp sysstat &> /dev/null
 	systemctl disable --now firewalld &> /dev/null
