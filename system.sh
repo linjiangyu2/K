@@ -50,7 +50,7 @@ yum_install(){
 	then
 	echo -e "[Base]\nname=Base\nbaseurl=file:///iso/BaseOS\ngpgcheck=0\nenabled=1\n[AppStream]\nname=AppStream\nbaseurl=file:///iso/AppStream\ngpgcheck=0\nenabled=1" > /etc/yum.repos.d/local.repo
 	else
-	echo -e "[local]\nname=local\nbaseurl=file:///iso\nenabled=1\ngpgcheck=0" >> /etc/yum.repos.d/local.repo
+	echo -e "[local]\nname=local\nbaseurl=file:///iso\nenabled=1\ngpgcheck=0" > /etc/yum.repos.d/local.repo
 	fi
 	rpm -q net-tools &> /dev/null
 	[ $? -ne 0 ] && yum install -y net-tools &> /dev/null
