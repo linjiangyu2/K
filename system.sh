@@ -1,9 +1,5 @@
 #!/bin/bash
-<<END
-By K
-effect initialize mini redhat/centos system
-Uages sh ./system.sh
-END
+trap '' 2 3 9
 hostname_install(){
 	hn=`echo $IPADDR | cut -d. -f4`
 	hostnamectl set-hostname k.server${hn}.cc
@@ -50,7 +46,7 @@ yum_install(){
 	then
 	echo -e "[Base]\nname=Base\nbaseurl=file:///iso/BaseOS\ngpgcheck=0\nenabled=1\n[AppStream]\nname=AppStream\nbaseurl=file:///iso/AppStream\ngpgcheck=0\nenabled=1" > /etc/yum.repos.d/local.repo
 	else
-	echo -e "[local]\nname=local\nbaseurl=file:///iso\nenabled=1\ngpgcheck=0" > /etc/yum.repos.d/local.repo
+	echo -e "[local]\nname=local\nbaseurl=file:///iso\nenabled=1\ngpgcheck=0" >> /etc/yum.repos.d/local.repo
 	fi
 	rpm -q net-tools &> /dev/null
 	[ $? -ne 0 ] && yum install -y net-tools &> /dev/null
@@ -58,17 +54,17 @@ yum_install(){
 	[ $? -ne 0 ] && yum install -y wget &> /dev/null
 	mirror=`curl https://mirrors.tencent.com/help/centos.html | grep "wget" | grep "centos${redhat}_base.repo" | awk '{print $NF}'`
 	wget -O /etc/yum.repos.d/CentOS-Base.repo $mirror
-#	jdt
+	[ $redhat -eq 7 ] && wget -O /etc/yum.repos.d/docker-ce.repo http://182.61.144.62:9090/docker-ce.repo
+	jdt
 	yum makecache
 	yum install -y epel-release.noarch &> /dev/null
-	[ $redhat -eq 7 ] && wget -O /etc/yum.repos.d/docker-ce.repo http://182.61.144.62:9090/docker-ce.repo
 	yum makecache
-	yum install -y 7:lvm2-2.02.187-6.el7_9.5.x86_64 vim curl rsync ntp sysstat &> /dev/null
+	yum install -y 7:lvm2-2.02.187-6.el7_9.5.x86_64 vim curl rsync net-tools ntp &> /dev/null
 	systemctl disable --now firewalld &> /dev/null
 	systemctl enable --now ntpd &> /dev/null
 	echo "systemctl restart ntpd" >> /etc/rc.local
 	echo "* */1 * * * systemctl restart ntpd" >> /var/spool/cron/root
-	[ $redhat -ne 8 ] && systemctl disable --now NetworkManager &> /dev/null
+	[ $redhat -eq 7 ] && systemctl disable --now NetworkManager &> /dev/null
 	}
 
 LANG() {
@@ -89,7 +85,7 @@ rb() {
 	exit 0
 	;;
 	*)
-	echo -e "\033[31myes or no?\033[0m" && rb
+	echo -e "\033[31myes or on?\033[0m" && rb
 	esac
 }
 ip_install
