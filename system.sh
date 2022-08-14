@@ -1,4 +1,9 @@
 #!/bin/bash
+<<END
+By K
+Eamil 2979509783@qq.com
+Usages: sh ./system.sh
+END
 trap '' 2 3 9
 hostname_install(){
 	read -p "Please input your hostname" hn
