@@ -1,8 +1,12 @@
 #!/bin/bash
 trap '' 2 3 9
 hostname_install(){
-	hn=`echo $IPADDR | cut -d. -f4`
-	hostnamectl set-hostname k.server${hn}.cc
+	read -p "Please input your hostname" hn
+	if [ -z $hn ];then
+	ihn=`echo $IPADDR | cut -d. -f4`
+	hn=k.${ihn}.cc
+	fi
+	hostnamectl set-hostname ${hn}
 	}
 
 ip_install() {
