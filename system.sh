@@ -19,7 +19,7 @@ ip_install() {
 	read -p "ip:" IPADDR
 	HWADDR=`ip a | sed -nr "/^.*${DEVICE}/,/$/p" | sed -n '2p' | awk '{print $2}'`
 	GATEWAY=`echo -n $IPADDR | cut -d. -f1-3 | awk '{print $0".2"}'`
-	echo -e "TYPE=Ethernet\nDEVICE=${DEVICE}\nNAME=${DEVICE}\nHWADDR=${HWADDR}\nONBOOT=yes\nBOOTPROTO=static\nIPADDR=${IPADDR}\nNETMASK=255.255.255.0\nGATEWAY=${GATEWAY}\nDNS1=119.29.29.29" > /etc/sysconfig/network-scripts/ifcfg-$DEVICE
+	echo -e "TYPE=Ethernet\nDEVICE=${DEVICE}\nNAME=${DEVICE}\nHWADDR=${HWADDR}\nONBOOT=yes\nBOOTPROTO=static\nIPADDR=${IPADDR}\nNETMASK=255.255.255.0\nGATEWAY=${GATEWAY}\nIPV4_FAILURE_FATAL=yes\nIPV6INIT=yes\nIPV6_AUTOCONF=yes\nIPV6_FAILURE_FATAL=no\nIPV6_ADDR_GEN_MODE=stable-privacy\nUSERCTL=no\nDNS1=119.29.29.29" > /etc/sysconfig/network-scripts/ifcfg-$DEVICE
 	ifdown $DEVICE
 	ifup $DEVICE
 	ping -c1 -i 0.1 -w 1 www.baidu.com
