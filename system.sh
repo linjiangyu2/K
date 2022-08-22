@@ -1,8 +1,8 @@
 #!/bin/bash
 <<END
 By K
-Eamil 2979509783@qq.com
-Usages: sh ./system.sh
+Eamil linjiangyu0702@qq.com
+Usages: sh ./system.sh | remote: DEVICE,IP,HOSTNAME,REBOOT
 END
 trap '' 2 3 9
 hostname_install(){
