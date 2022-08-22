@@ -2,9 +2,25 @@
 <<END
 By K
 Eamil linjiangyu0702@qq.com
-Usages: sh ./system.sh | remote: DEVICE,IP,HOSTNAME,REBOOT
+Usages: sh ./system.sh | remote: first or Seconds..,DEVICE,IP,HOSTNAME,REBOOT
 END
 trap '' 2 3 9
+[ $(id -u) -ne 0 ] && echo -e "\033[31mmust use root user\033[0m" && exit 1
+requests() {
+read -p "Whether to run this script a second time or more,yes or no (default no)" an 
+case $an in
+	'yes' )
+	umount /iso && rmdir /iso
+	rm -f /etc/yum.repos.d/* && sed -i '$d' /etc/fstab /etc/rc.local /var/spool/cron/root
+	systemctl start NetworkManager &> /dev/null
+	;;
+	'no' )
+	sleep 1
+	;;
+	*)
+	requests
+esac
+}
 hostname_install(){
 	read -p "Please input your hostname" hn
 	if [ -z $hn ];then
@@ -14,17 +30,30 @@ hostname_install(){
 	hostnamectl set-hostname ${hn}
 	}
 
+#ip_install() {
+#	read -p "device:" DEVICE
+#	read -p "ip:" IPADDR
+#	HWADDR=`ip a | sed -nr "/^.*${DEVICE}/,/$/p" | sed -n '2p' | awk '{print $2}'`
+#	GATEWAY=`echo -n $IPADDR | cut -d. -f1-3 | awk '{print $0".2"}'`
+#	echo -e "TYPE=Ethernet\nDEVICE=${DEVICE}\nNAME=${DEVICE}\nHWADDR=${HWADDR}\nONBOOT=yes\nBOOTPROTO=static\nIPADDR=${IPADDR}\nNETMASK=255.255.255.0\nGATEWAY=${GATEWAY}\nIPV4_FAILURE_FATAL=yes\nIPV6INIT=yes\nIPV6_AUTOCONF=yes\nIPV6_FAILURE_FATAL=no\nIPV6_ADDR_GEN_MODE=stable-privacy\nUSERCTL=no\nDNS1=119.29.29.29" > /etc/sysconfig/network-scripts/ifcfg-$DEVICE
+#	ifdown $DEVICE
+#	ifup $DEVICE
+#	ping -c1 -i 0.1 -w 1 www.baidu.com
+#	[ $? -eq 0 ] && echo -e "\033[35mThe network is connected to the extranet successfully\033[0m" || echo -e "\033[31mNetwork connection Extranet successful The extranet connection failed. Check the routing table\033[0m"
+#	}
+
 ip_install() {
-	read -p "device:" DEVICE
-	read -p "ip:" IPADDR
-	HWADDR=`ip a | sed -nr "/^.*${DEVICE}/,/$/p" | sed -n '2p' | awk '{print $2}'`
-	GATEWAY=`echo -n $IPADDR | cut -d. -f1-3 | awk '{print $0".2"}'`
-	echo -e "TYPE=Ethernet\nDEVICE=${DEVICE}\nNAME=${DEVICE}\nHWADDR=${HWADDR}\nONBOOT=yes\nBOOTPROTO=static\nIPADDR=${IPADDR}\nNETMASK=255.255.255.0\nGATEWAY=${GATEWAY}\nIPV4_FAILURE_FATAL=yes\nIPV6INIT=yes\nIPV6_AUTOCONF=yes\nIPV6_FAILURE_FATAL=no\nIPV6_ADDR_GEN_MODE=stable-privacy\nUSERCTL=no\nDNS1=119.29.29.29" > /etc/sysconfig/network-scripts/ifcfg-$DEVICE
-	ifdown $DEVICE
-	ifup $DEVICE
-	ping -c1 -i 0.1 -w 1 www.baidu.com
-	[ $? -eq 0 ] && echo -e "\033[35mThe network is connected to the extranet successfully\033[0m" || echo -e "\033[31mNetwork connection Extranet successful The extranet connection failed. Check the routing table\033[0m"
-	}
+        read -p "device:" DEVICE
+        read -p "ip:" IPADDR
+        [ ! -f /etc/sysconfig/network-scripts/ifcfg-$DEVICEA ] && touch /etc/sysconfig/network-scripts/ifcfg-$DEVICE      
+#       HWADDR=`ip a | sed -nr "/^.*${DEVICE}/,/$/p" | sed -n '2p' | awk '{print $2}'`
+        GATEWAY=`echo -n $IPADDR | cut -d. -f1-3 | awk '{print $0".2"}'`
+        nmcli c m $DEVICE ifname $DEVICE
+        nmcli c d $DEVICE && nmcli con mod $DEVICE ipv4.method manual ipv4.address ${IPADDR}/24 gw4 $(echo -n $IPADDR | cut -d. -f1-3 | awk '{print $0".2"}') ipv4.dns 119.29.29.29 connection.autoconnect yes connection.interface-name $DEVICE 802-3-ethernet.mac-address $(ip a | grep -A3 $DEVICE | grep link/ether | awk '{print $2}') && nmcli c r && nmcli c up $DEVICE
+        ping -c1 -i 0.1 -w 1 www.baidu.com
+        [ $? -eq 0 ] && echo -e "\033[35mThe network is connected to the extranet successfully\033[0m" || echo -e "\033[31mNetwork connection Extranet successful The extranet connecti
+on failed. Check the routing table\033[0m"
+        }
 
 selinux_modify(){
 	sed -i 's/SELINUX=[pe].*/SELINUX=disabled/g' /etc/selinux/config
