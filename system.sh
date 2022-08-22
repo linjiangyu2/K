@@ -113,7 +113,7 @@ rb() {
 	INPUT=""
 	while [[ -z $INPUT ]]
 	do
-		read -p "For all configurations to take effect, check whether reboot?(yes/on)" INPUT
+		read -p "For all configurations to take effect, check whether reboot?(yes/no)" INPUT
 	done
 	case $INPUT in
 	  'yes' )
