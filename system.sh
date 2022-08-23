@@ -45,7 +45,7 @@ hostname_install(){
 ip_install() {
         read -p "device:" DEVICE
         read -p "ip:" IPADDR
-        [ ! -f /etc/sysconfig/network-scripts/ifcfg-$DEVICEA ] && touch /etc/sysconfig/network-scripts/ifcfg-$DEVICE      
+        [ ! -f /etc/sysconfig/network-scripts/ifcfg-$DEVICE ] && nmcli con add type ethernet con-name $DEVICE ifname $DEVICE
 #       HWADDR=`ip a | sed -nr "/^.*${DEVICE}/,/$/p" | sed -n '2p' | awk '{print $2}'`
         GATEWAY=`echo -n $IPADDR | cut -d. -f1-3 | awk '{print $0".2"}'`
         nmcli c m $DEVICE ifname $DEVICE
