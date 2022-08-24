@@ -7,7 +7,7 @@ END
 trap '' 2 3 9
 [ $(id -u) -ne 0 ] && echo -e "\033[31mmust use root user\033[0m" && exit 1
 requests() {
-read -p "Whether to run this script a second time or more,yes or no (default no)" an 
+read -p "Whether to run this script a second time or more,yes or no (default no):" an 
 case $an in
 	'yes' )
 	umount /iso && rmdir /iso
@@ -22,7 +22,7 @@ case $an in
 esac
 }
 hostname_install(){
-	read -p "Please input your hostname" hn
+	read -p "Please input your hostname:" hn
 	if [ -z $hn ];then
 	ihn=`echo $IPADDR | cut -d. -f4`
 	hn=k.${ihn}.cc
@@ -93,7 +93,7 @@ yum_install(){
 	mirror=`curl https://mirrors.tencent.com/help/centos.html | grep "wget" | grep "centos${redhat}_base.repo" | awk '{print $NF}'`
 	wget -O /etc/yum.repos.d/CentOS-Base.repo $mirror
 	[ $redhat -eq 7 ] && wget -O /etc/yum.repos.d/docker-ce.repo http://182.61.144.62:9090/docker-ce.repo
-	jdt
+#	jdt
 	yum makecache
 	yum install -y epel-release.noarch &> /dev/null
 	yum makecache
@@ -113,7 +113,7 @@ rb() {
 	INPUT=""
 	while [[ -z $INPUT ]]
 	do
-		read -p "For all configurations to take effect, check whether reboot?(yes/no)" INPUT
+		read -p "For all configurations to take effect, check whether reboot?(yes/no):" INPUT
 	done
 	case $INPUT in
 	  'yes' )
