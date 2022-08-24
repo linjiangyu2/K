@@ -2,7 +2,7 @@
 <<END
 By K
 Eamil linjiangyu0702@qq.com
-Usages: sh ./system.sh | remote: first or Seconds..,DEVICE,IP,HOSTNAME,REBOOT
+Usages: sh ./system.sh | remote: first or Seconds..used,DEVICE,IP,HOSTNAME,REBOOT
 END
 trap '' 2 3 9
 [ $(id -u) -ne 0 ] && echo -e "\033[31mmust use root user\033[0m" && exit 1
@@ -97,7 +97,7 @@ yum_install(){
 	yum makecache
 	yum install -y epel-release.noarch &> /dev/null
 	yum makecache
-	yum install -y 7:lvm2-2.02.187-6.el7_9.5.x86_64 vim curl rsync net-tools ntp bash-completion &> /dev/null
+	yum install -y lsof 7:lvm2-2.02.187-6.el7_9.5.x86_64 vim curl rsync net-tools ntp bash-completion &> /dev/null
 	systemctl disable --now firewalld &> /dev/null
 	systemctl enable --now ntpd &> /dev/null
 	echo "systemctl restart ntpd" >> /etc/rc.local
