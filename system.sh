@@ -126,6 +126,7 @@ rb() {
 	echo -e "\033[31myes or on?\033[0m" && rb
 	esac
 }
+requests
 ip_install
 hostname_install
 selinux_modify
