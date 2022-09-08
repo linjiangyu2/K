@@ -7,7 +7,7 @@
 Usage: ksh
 # 需要把虚拟机的CD连接上,要不然会出错
 # 一旦运行不可中断
-# 可通过邮箱联系或者博客linjiangyu.com
+# 可通过邮箱联系或者博客linjiangyu.com留言
 1.是否是第一次使用这个脚本,yes or no
 2.网卡设备名,如ens33或eth0
 3.要设定的IP地址
