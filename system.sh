@@ -10,8 +10,8 @@ requests() {
 read -p "Whether to run this script a second time or more,yes or no (default no):" an 
 case $an in
 	'yes' )
-	umount /iso && rmdir /iso
-	rm -f /etc/yum.repos.d/* && sed -i '$d' /etc/fstab /etc/rc.local /var/spool/cron/root
+	umount /iso && rmdir /iso &> /dev/null
+	rm -f /etc/yum.repos.d/* && sed -i '$d' /etc/fstab /etc/rc.local /var/spool/cron/root &> /dev/null
 	systemctl start NetworkManager &> /dev/null
 	;;
 	'no' )
