@@ -4,7 +4,7 @@
   Blog  	linjiangyu.com
   describe      自用初始化centos7.x OS系统的脚本。
 */
-Usage:
+Usage: ksh
 # 需要把虚拟机的CD连接上,要不然会出错
 # 一旦运行不可中断
 # 可通过邮箱联系或者博客linjiangyu.com
