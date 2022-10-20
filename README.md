@@ -23,3 +23,13 @@ Usage: ./ksh
 Usage: ./kca
 # 
 * 全部必填项，不会填的按default的输入
+# kkca
+/* By K
+  eamil 	linjiangyu0702@qq.com
+  Blog  	linjiangyu.com
+  description   CA服务器搭建
+*/
+Usage: ./kkca
+#
+1.私钥字节
+2.CA服务器自签证书有效期限
