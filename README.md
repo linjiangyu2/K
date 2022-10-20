@@ -33,3 +33,11 @@ Usage: ./kkca
 #
 1.私钥字节
 2.CA服务器自签证书有效期限
+3.证书信息
+  CN
+  Guangdong
+  Jieyang
+  K
+  Ops
+  k.ca.com
+  linjiangyu0702@qq.com
