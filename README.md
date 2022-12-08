@@ -1,8 +1,9 @@
-# ksh 1 2 3(系统优化)
+# ksh 1 2 3(系统优化) 4(初始化)
 /* By K
-  eamil 	linjiangyu0702@qq.com
+  Eamil 	linjiangyu0702@qq.com
   Blog  	linjiangyu.com
-  description   自用初始化最小化centos7.x OS系统的脚本。
+  Description   自用初始化最小化centos7.x OS系统的脚本。
+  Modify_date	2022-11-08(初始化添加收集系统信息)
 */
 Usage: ./ksh
 # 需要把虚拟机的CD连接上,要不然会出错
