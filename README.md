@@ -15,6 +15,14 @@ Usage: ./ksh
 4.hostname要设定的主机名
 5.是否使用k.dns.com的内网域名(默认为no),yes or no
 6.reboot是否重启(推荐重启，让全部配置生效),yes or no
+# knginx
+/* By K
+  Eamil         linjiangyu0702@linjiangyu.com
+  Blog          linjiangyu.com
+  Description   源码编译的nginx-1.22.0
+  Modify_date   2023-03-11(初始化)
+*/
+Usage: ./knginx
 # kca
 /* By K
   eamil 	linjiangyu0702@linjiangyu.com
