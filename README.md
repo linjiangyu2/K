@@ -1,5 +1,4 @@
 <h1 align='center'>⚡️<i>Stay awesome!</i>⚡️</h1>
-[![Typing SVG](https://cdn1.tianli0.top/gh/linjiangyu2/halo/img/github.svg)](https://linjiangyu.com/)
 
 ## Hi there <img src="https://cdn1.tianli0.top/gh/linjiangyu2/halo/img/wave.gif" width="30px">
 嗨，我是 [Tianlin](https://www.linjiangyu.com/personal/about/)，是一名学生、博主、运维工程师😄
@@ -73,6 +72,8 @@ Usage: ./tsh
   Description   源码编译的mysql-8.0.31-boost
   Modify_date   2023-03-25(初始化)
 */
+![](https://cdn1.tianli0.top/gh/linjiangyu2/halo/img/1679744589613.jpg)
+#
 # tnginx
 /* By Tianlin_Zz
   Eamil         linjiangyu0702@linjiangyu.com
@@ -81,6 +82,7 @@ Usage: ./tsh
   Modify_date   2023-03-11(初始化)
 */
 Usage: ./tnginx
+#
 # kca
 /* By K
   eamil 	linjiangyu0702@linjiangyu.com
