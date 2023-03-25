@@ -1,9 +1,4 @@
 <h1 align='center'>⚡️<i>Stay awesome!</i>⚡️</h1>
-
-<p align="center">
-        <img src="https://cdn1.tianli0.top/gh/linjiangyu2/halo/img/Bottom.svg" alt="Github Stats" />
-</p>
-
 [![Typing SVG](https://cdn1.tianli0.top/gh/linjiangyu2/halo/img/github.svg)](https://linjiangyu.com/)
 
 ## Hi there <img src="https://cdn1.tianli0.top/gh/linjiangyu2/halo/img/wave.gif" width="30px">
@@ -54,16 +49,14 @@ Hi, I'm [Tianlin](https://www.linjiangyu.com/personal/about/), a student, blogge
 ![](https://img.shields.io/badge/Monitor-Zabbix-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=ff5c33)
 ![](https://img.shields.io/badge/Storage-Ceph-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=ffcc80)
 ![](https://img.shields.io/badge/Grid-Consul-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=ff80df)
-#
-以下是脚本作用和参数
-# ksh 1 2 3(系统优化) 4(初始化)
-/* By K
+# tsh 1 2 3(系统优化) 4(初始化)
+/* By Tianlin_Zz
   Eamil 	linjiangyu0702@linjiangyu.com
   Blog  	linjiangyu.com
   Description   自用初始化最小化centos7.x OS系统的脚本。
   Modify_date	2022-11-08(初始化添加收集系统信息)
 */
-Usage: ./ksh
+Usage: ./tsh
 # 需要把虚拟机的CD连接上,要不然会出错
 # 一旦运行不可中断
 # 可通过邮箱联系或者博客linjiangyu.com
@@ -73,14 +66,21 @@ Usage: ./ksh
 4.hostname要设定的主机名
 5.是否使用k.dns.com的内网域名(默认为no),yes or no
 6.reboot是否重启(推荐重启，让全部配置生效),yes or no
-# knginx
-/* By K
+# tmysql
+/* By Tianlin_Zz
+  Eamil         linjiangyu0702@linjiangyu.com
+  Blog          linjiangyu.com
+  Description   源码编译的mysql-8.0.31-boost
+  Modify_date   2023-03-25(初始化)
+*/
+# tnginx
+/* By Tianlin_Zz
   Eamil         linjiangyu0702@linjiangyu.com
   Blog          linjiangyu.com
   Description   源码编译的nginx-1.22.0
   Modify_date   2023-03-11(初始化)
 */
-Usage: ./knginx
+Usage: ./tnginx
 # kca
 /* By K
   eamil 	linjiangyu0702@linjiangyu.com
